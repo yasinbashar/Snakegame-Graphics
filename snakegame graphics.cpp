@@ -10,7 +10,7 @@ int main()
 
     //initialization
 
-    int  delayTime = 200;
+    int  delayTime = 150;
     int food = 0;        // snake food
     int body= 500;   // snake body
     int p_dir = 1;     //p_dir = previous direction;
@@ -24,7 +24,7 @@ int main()
 
     // initialization for display snake ;
 
-    snakeX[0] = 200,snakeY[0] = 200; // starting position of the snake
+    snakeX[0] = 200,snakeY[0] = 200; // starting position of the snake//changw
     foodX = 200, foodY = 200; // starting position of food
     key_dir = rand()%2;
 
@@ -33,10 +33,10 @@ int main()
 
     while(game)
     {
-        setfillstyle(SOLID_FILL,WHITE); // initialization back ground color
+        setfillstyle(SOLID_FILL,RED); // initialization back ground color
         bar(0,0,630,470);  //  initializing background size or wide (lower width 630 and right length 470)
 
-        setfillstyle(SOLID_FILL,YELLOW);  // initializing boarder color
+        setfillstyle(SOLID_FILL,BLUE);  // initializing boarder color
 
         bar(0,0,630,10); // upper boarder width,length
 
@@ -47,7 +47,7 @@ int main()
         bar(620,10,630,470); // lower boarder width,length
 
 
-        setfillstyle(SOLID_FILL,	MAGENTA); // initialization food color
+        setfillstyle(SOLID_FILL,	WHITE); // initialization food color
 
         if(snakeX[0] == foodX && snakeY[0] == foodY) // checking snake and food is in the same position or not
         {
@@ -85,20 +85,20 @@ int main()
 
         bar(foodX,foodY,foodX + 10, foodY + 10); // final  food position for display
 
-        setfillstyle(SOLID_FILL,	CYAN); // initialize snake color
+        setfillstyle(SOLID_FILL,	BLACK); // initialize snake color
 
         // condition for key direction
 
-        if(GetAsyncKeyState(VK_RIGHT)||GetAsyncKeyState('D')){
+        if(GetAsyncKeyState(VK_RIGHT)){
             key_dir = 1;
         }
-        else if(GetAsyncKeyState(VK_LEFT)||GetAsyncKeyState('A')){
+        else if(GetAsyncKeyState(VK_LEFT)){
             key_dir = 2;
         }
-        else if(GetAsyncKeyState(VK_UP)||GetAsyncKeyState('W')){
+        else if(GetAsyncKeyState(VK_UP)){
             key_dir = 3;
         }
-        else if(GetAsyncKeyState(VK_DOWN)||GetAsyncKeyState('S')){
+        else if(GetAsyncKeyState(VK_DOWN)){
             key_dir = 4;
         }
         else {
@@ -150,7 +150,10 @@ int main()
 
        for(int i =0; i < length; i++)
        {
-           bar(snakeX[i], snakeY[i], snakeX[i] + 10, snakeY[i] + 10);
+           //bar(snakeX[i], snakeY[i], snakeX[i] + 10, snakeY[i] + 10);
+           if(i==0){outtextxy(snakeX[i],snakeY[i],"#");}
+           else{
+           outtextxy(snakeX[i],snakeY[i],"0");}
        }
 
        // body of snake
@@ -177,14 +180,14 @@ int main()
     // checking bumping in to boundary;
 
     if(snakeX[0] >= 615 || snakeX[0] <=5 || snakeY[0] <= 5|| snakeY[0] >= 455){
-        std::cout<<"Snake bumped into the wall !!\n\n";
+        std::cout<<"Snake bumped into the wall !\n\n";
         game = false;
     }
 
     // checking bumping into body
 
     if(snakeX[0] == snakeX[body] && snakeY[0] ==  snakeY[body] ){
-        std::cout<<"Snake bumped into itself !!!\n\n";
+        std::cout<<"Snake bumped into itself !\n\n";
         game = false;
     }
 
@@ -192,8 +195,9 @@ int main()
 
     // game result
 
-    std::cout<<"Your score is : " <<(food-1)*10<<"\n\n";
-    std::cout<<"Game Over !!!\n\n";
+    std::cout<<"Your score is : " <<(food-1)<<"\n\n";
+    std::cout<<"Game Over !\n\n";
     getch();
     return 0;
 }
+
